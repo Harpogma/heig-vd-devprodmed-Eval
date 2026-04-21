@@ -13,6 +13,13 @@ class User extends Authenticatable
 
     protected $hidden = ['password', 'remember_token'];
 
+    protected $fillable = ['character_slug'];
+
+    public function character(): ?object
+    {
+        return Character::findBySlug($this->character_slug);
+    }
+
     /**
      * Get the posts for the user.
      */
