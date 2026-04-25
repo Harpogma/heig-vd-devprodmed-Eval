@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'abilities' => CheckAbilities::class,
             'ability' => CheckForAnyAbility::class,
+            'character.selected' => \App\Http\Middleware\EnsureCharacterSelected::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

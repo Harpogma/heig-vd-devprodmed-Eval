@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8">
     @isset($description)
-        <meta name="description" content="{{ $description }}">
+    <meta name="description" content="{{ $description }}">
     @endisset
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     @isset($title)
-        <title>{{ $title }} - {{ config('app.name') }}</title>
+    <title>{{ $title }} - {{ config('app.name') }}</title>
     @else
-        <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name') }}</title>
     @endisset
 
     <!-- Styles / Scripts -->
@@ -19,7 +19,7 @@
 </head>
 
 <body class="flex min-h-screen flex-col bg-slate-50 dark:bg-slate-900">
-    <header class="bg-teal-600 text-white dark:bg-slate-800">
+    <header class="bg-gray-800 text-white dark:bg-slate-800">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="h-16 flex items-center justify-between">
                 <div class="flex items-center gap-4">
@@ -27,34 +27,34 @@
                         {{ config('app.name') }}
                     </a>
                     <a href="{{ url('/posts') }}"
-                        class="block bg-teal-700 dark:bg-purple-900 px-3 py-1 rounded-md hover:bg-teal-800 dark:hover:bg-purple-800">
+                        class="block bg-fuchsia-800 dark:bg-purple-900 px-3 py-1 rounded-md hover:bg-fuchsia-500 dark:hover:bg-purple-800">
                         {{ __('ui.posts.index.title') }}
                     </a>
                 </div>
 
                 @auth
-                    <a href="{{ url('/my-profile') }}" class="block hover:opacity-80 transition">
-                        <div
-                            class="h-8 w-8 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                            @if (Auth::user()->profile_picture)
-                                <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}"
-                                    alt="{{ Auth::user()->username }}" class="w-full h-full object-cover">
-                            @else
-                                <img src="/icons/profile.svg" alt="{{ Auth::user()->username }}" class="h-8 w-8">
-                            @endif
-                        </div>
-                    </a>
-                @else
-                    <div class="flex items-center gap-2">
-                        <a href="{{ url('/auth/login') }}"
-                            class="block px-3 py-1 rounded-md hover:bg-teal-700 dark:hover:bg-slate-700 transition">
-                            {{ __('ui.auth.login.title') }}
-                        </a>
-                        <a href="{{ url('/auth/register') }}"
-                            class="block bg-teal-700 dark:bg-purple-900 px-3 py-1 rounded-md hover:bg-teal-800 dark:hover:bg-purple-800 transition">
-                            {{ __('ui.auth.register.title') }}
-                        </a>
+                <a href="{{ url('/my-profile') }}" class="block hover:opacity-80 transition">
+                    <div
+                        class="h-8 w-8 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                        @if (Auth::user()->profile_picture)
+                        <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}"
+                            alt="{{ Auth::user()->username }}" class="w-full h-full object-cover">
+                        @else
+                        <img src="/icons/profile.svg" alt="{{ Auth::user()->username }}" class="h-8 w-8">
+                        @endif
                     </div>
+                </a>
+                @else
+                <div class="flex items-center gap-2">
+                    <a href="{{ url('/auth/login') }}"
+                        class="block px-3 py-1 rounded-md hover:bg-fuchsia-500 dark:hover:bg-slate-700 transition">
+                        {{ __('ui.auth.login.title') }}
+                    </a>
+                    <a href="{{ url('/auth/register') }}"
+                        class="block bg-fuchsia-800 dark:bg-purple-900 px-3 py-1 rounded-md hover:bg-fuchsia-500 dark:hover:bg-purple-800 transition">
+                        {{ __('ui.auth.register.title') }}
+                    </a>
+                </div>
                 @endauth
             </div>
         </nav>
@@ -64,7 +64,7 @@
         {{ $slot }}
     </main>
 
-    <footer class="bg-teal-600 text-white text-sm dark:bg-slate-800">
+    <footer class="bg-gray-800 text-white text-sm dark:bg-slate-800">
         <div class="container mx-auto px-4 py-6 sm:px-6 lg:px-8">
             <div class="h-16 flex flex-col items-center justify-between gap-4 sm:flex-row">
                 <p class="text-center sm:text-left">

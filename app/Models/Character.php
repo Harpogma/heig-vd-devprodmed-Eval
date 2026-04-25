@@ -49,7 +49,6 @@ class Character
             self::make('Ken',      'ken',      Archetype::Rushdown),
             self::make('Kimberly', 'kimberly', Archetype::Rushdown),
             self::make('Bison',    'bison',    Archetype::Rushdown),
-            self::make('Menat',    'menat',    Archetype::Rushdown),
 
             self::make('Dhalsim', 'dhalsim', Archetype::Zoner),
             self::make('Ed',      'ed',      Archetype::Zoner),

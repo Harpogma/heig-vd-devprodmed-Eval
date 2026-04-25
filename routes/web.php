@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CharacterSelectionController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MyProfileController;
 use App\Http\Controllers\PostController;
@@ -24,7 +25,12 @@ Route::get('/@{username}', [ProfileController::class, 'show'])->where('username'
 Route::resource('posts', PostController::class)->except(['index', 'show'])->middleware('auth');
 Route::resource('posts', PostController::class)->only(['index', 'show']);
 
-Route::singleton('my-profile', MyProfileController::class)->destroyable()->middleware('auth');
+Route::singleton('my-profile', MyProfileController::class)->destroyable()->middleware(['auth', 'character.selected']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/character/select', [CharacterSelectionController::class, 'show'])->name('character.select');
+    Route::post('/character/select', [CharacterSelectionController::class, 'store'])->name('character.store');
+});
 
 Route::match(['put', 'patch'], '/likes/{post}', [LikeController::class, 'update'])->middleware('auth');
 
