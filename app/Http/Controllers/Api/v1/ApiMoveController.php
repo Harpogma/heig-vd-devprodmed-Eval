@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
+use App\Models\Move;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class ApiPostController extends Controller
+class ApiMoveController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
+        $moves = Move::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
 
-        return $posts;
+        return $moves;
     }
 
     /**
@@ -30,15 +30,15 @@ class ApiPostController extends Controller
         ]);
 
         $user = $request->user();
-        $post = new Post();
+        $move = new Move();
 
-        $post->title = $validated['title'];
-        $post->content = $validated['content'];
-        $post->user()->associate($user);
+        $move->title = $validated['title'];
+        $move->content = $validated['content'];
+        $move->user()->associate($user);
 
-        $post->save();
+        $move->save();
 
-        return $post;
+        return $move;
     }
 
     /**
@@ -46,9 +46,9 @@ class ApiPostController extends Controller
      */
     public function show(string $id)
     {
-        $post = Post::with('user')->with('likes')->findOrFail($id);
+        $move = Move::with('user')->with('likes')->findOrFail($id);
 
-        return $post;
+        return $move;
     }
 
     /**
@@ -61,16 +61,16 @@ class ApiPostController extends Controller
             'content' => 'required|string|max:5000',
         ]);
 
-        $post = Post::findOrFail($id);
+        $move = Move::findOrFail($id);
 
-        Gate::authorize('update', $post);
+        Gate::authorize('update', $move);
 
-        $post->title = $validated['title'];
-        $post->content = $validated['content'];
+        $move->title = $validated['title'];
+        $move->content = $validated['content'];
 
-        $post->save();
+        $move->save();
 
-        return $post;
+        return $move;
     }
 
     /**
@@ -78,11 +78,11 @@ class ApiPostController extends Controller
      */
     public function destroy(string $id)
     {
-        $post = Post::findOrFail($id);
+        $move = Move::findOrFail($id);
 
-        Gate::authorize('delete', $post);
+        Gate::authorize('delete', $move);
 
-        $post->delete();
+        $move->delete();
 
         return response()->noContent();
     }

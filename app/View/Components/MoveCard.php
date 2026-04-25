@@ -2,18 +2,18 @@
 
 namespace App\View\Components;
 
-use App\Models\Post;
+use App\Models\Move;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class PostCard extends Component
+class MoveCard extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public Post $post,
+        public Move $move,
     ) {
         //
     }
@@ -23,6 +23,6 @@ class PostCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.post-card');
+        return view('components.move-card');
     }
 }

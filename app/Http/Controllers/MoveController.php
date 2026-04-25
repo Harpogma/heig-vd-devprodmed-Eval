@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Move;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
-class PostController extends Controller
+class MoveController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
+        $moves = Move::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
 
-        return view('posts.index', ['posts' => $posts]);
+        return view('moves.index', ['moves' => $moves]);
     }
 
     /**
@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('moves.create');
     }
 
     /**
@@ -38,15 +38,15 @@ class PostController extends Controller
         ]);
 
         $user = $request->user();
-        $post = new Post();
+        $move = new Move();
 
-        $post->title = $validated['title'];
-        $post->content = $validated['content'];
-        $post->user()->associate($user);
+        $move->title = $validated['title'];
+        $move->content = $validated['content'];
+        $move->user()->associate($user);
 
-        $post->save();
+        $move->save();
 
-        return redirect("/posts/$post->id");
+        return redirect("/moves/$move->id");
     }
 
     /**
@@ -54,22 +54,20 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $post = Post::with('user')->with('likes')->findOrFail($id);
+        $move = Move::with('user')->with('likes')->findOrFail($id);
 
         $user = Auth::user();
         $reaction = null;
 
         if ($user) {
-            $reaction = $post->likes()->where('user_id', $user->id)->first();
+            $reaction = $move->likes()->where('user_id', $user->id)->first();
 
-            // Vérifie si la personne a déjà liké ce post
             if ($reaction) {
-                // Récupère la réaction au post
                 $reaction = $reaction->pivot->reaction;
             }
         }
 
-        return view('posts.show', ['post' => $post, 'reaction' => $reaction]);
+        return view('moves.show', ['move' => $move, 'reaction' => $reaction]);
     }
 
     /**
@@ -77,11 +75,11 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $post = Post::findOrFail($id);
+        $move = Move::findOrFail($id);
 
-        Gate::authorize('update', $post);
+        Gate::authorize('update', $move);
 
-        return view('posts.edit', ['post' => $post]);
+        return view('moves.edit', ['move' => $move]);
     }
 
     /**
@@ -94,16 +92,16 @@ class PostController extends Controller
             'content' => 'required|string|max:5000',
         ]);
 
-        $post = Post::findOrFail($id);
+        $move = Move::findOrFail($id);
 
-        Gate::authorize('update', $post);
+        Gate::authorize('update', $move);
 
-        $post->title = $validated['title'];
-        $post->content = $validated['content'];
+        $move->title = $validated['title'];
+        $move->content = $validated['content'];
 
-        $post->save();
+        $move->save();
 
-        return redirect("/posts/$post->id");
+        return redirect("/moves/$move->id");
     }
 
     /**
@@ -111,12 +109,12 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        $post = Post::findOrFail($id);
+        $move = Move::findOrFail($id);
 
-        Gate::authorize('delete', $post);
+        Gate::authorize('delete', $move);
 
-        $post->delete();
+        $move->delete();
 
-        return redirect("/posts");
+        return redirect("/moves");
     }
 }

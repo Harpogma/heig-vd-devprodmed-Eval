@@ -21,18 +21,18 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the posts for the user.
+     * Get the moves for the user.
      */
-    public function posts(): HasMany
+    public function moves(): HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Move::class);
     }
 
     /**
-     * Get the posts liked by the user.
+     * Get the moves liked by the user.
      */
     public function likes(): BelongsToMany
     {
-        return $this->belongsToMany(Post::class, 'likes')->using(Like::class)->withTimestamps()->withPivot('reaction');
+        return $this->belongsToMany(Move::class, 'likes')->using(Like::class)->withTimestamps()->withPivot('reaction');
     }
 }

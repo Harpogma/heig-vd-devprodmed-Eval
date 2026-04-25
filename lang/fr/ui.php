@@ -7,8 +7,8 @@ return [
         'title' => 'Accueil',
         'description' => "Page d'accueil du réseau social.",
         'introduction' => 'Bienvenue sur :app_name !',
-        'recent_posts' => 'Posts récents',
-        'see_all_posts' => 'Voir tous les posts',
+        'recent_moves' => 'Moves récents',
+        'see_all_moves' => 'Voir tous les moves',
     ],
     'auth' => [
         'login' => [
@@ -123,8 +123,8 @@ return [
     'profile' => [
         'title' => 'Profil de :username',
         'description' => 'Page de profil pour :username.',
-        'posts_heading' => 'Posts de :first_name :last_name',
-        'number_of_posts' => '{0} Aucune publication|{1} :count publication|[2,*] :count publications',
+        'moves_heading' => 'Moves de :first_name :last_name',
+        'number_of_moves' => '{0} Aucune publication|{1} :count publication|[2,*] :count publications',
         'member_since' => 'Membre depuis le :date.',
     ],
     'about' => [
@@ -165,10 +165,10 @@ return [
                 'scopes' => [
                     'label' => 'Permissions',
                     'options' => [
-                        'posts_create' => 'Créer des posts',
-                        'posts_read' => 'Lire les posts',
-                        'posts_update' => 'Modifier des posts',
-                        'posts_delete' => 'Supprimer des posts',
+                        'moves_create' => 'Créer des moves',
+                        'moves_read' => 'Lire les moves',
+                        'moves_update' => 'Modifier des moves',
+                        'moves_delete' => 'Supprimer des moves',
                     ],
                 ],
                 'content' => [
@@ -186,47 +186,47 @@ return [
             ],
         ],
     ],
-    'posts' => [
-        'no_posts' => 'Aucun post à afficher.',
+    'moves' => [
+        'no_moves' => 'Aucun move à afficher.',
         'likes_count' => '{0} Aucun like|{1} :count like|[2,*] :count likes',
-        'view_post' => 'Voir le post',
+        'view_move' => 'Voir le move',
         'create' => [
-            'title' => 'Créer un nouveau post',
-            'description' => 'Créez un nouveau post pour partager vos pensées avec le monde sur :app_name.',
+            'title' => 'Créer un nouveau move',
+            'description' => 'Créez un nouveau move pour partager vos pensées avec le monde sur :app_name.',
         ],
         'form' => [
             'fields' => [
                 'title' => [
                     'label' => 'Titre (optionnel)',
-                    'placeholder' => 'Entrez un titre pour votre post (optionnel)',
+                    'placeholder' => 'Entrez un titre pour votre move (optionnel)',
                 ],
                 'content' => [
                     'label' => 'Contenu',
-                    'placeholder' => 'Exprimez-vous librement dans votre post...',
+                    'placeholder' => 'Exprimez-vous librement dans votre move...',
                 ],
             ],
             'actions' => [
                 'submit' => 'Sauvegarder',
                 'cancel' => 'Annuler',
                 'delete' => 'Supprimer',
-                'delete_confirm' => 'Souhaitez-vous vraiment supprimer ce post ? Cette action est irréversible.',
+                'delete_confirm' => 'Souhaitez-vous vraiment supprimer ce move ? Cette action est irréversible.',
             ],
         ],
         'index' => [
-            'title' => 'Tous les posts',
-            'description' => 'Tous les posts de :app_name.',
+            'title' => 'Tous les moves',
+            'description' => 'Tous les moves de :app_name.',
         ],
         'edit' => [
-            'title' => 'Modifier le post ":post_title"',
-            'title_without_post_title' => 'Modifier le post',
-            'description' => 'Modifiez le post ":post_title" pour mettre à jour son contenu.',
-            'description_without_post_title' => 'Modifiez le post pour mettre à jour son contenu.',
+            'title' => 'Modifier le move ":move_title"',
+            'title_without_move_title' => 'Modifier le move',
+            'description' => 'Modifiez le move ":move_title" pour mettre à jour son contenu.',
+            'description_without_move_title' => 'Modifiez le move pour mettre à jour son contenu.',
         ],
         'show' => [
-            'title' => '":post_title" par :first_name :last_name',
-            'title_without_post_title' => 'Post par :first_name :last_name',
-            'description' => '":post_title" par :first_name :last_name.',
-            'description_without_post_title' => 'Post de :first_name :last_name.',
+            'title' => '":move_title" par :first_name :last_name',
+            'title_without_move_title' => 'Move par :first_name :last_name',
+            'description' => '":move_title" par :first_name :last_name.',
+            'description_without_move_title' => 'Move de :first_name :last_name.',
             'author' => 'Publié par :first_name :last_name',
         ],
     ],

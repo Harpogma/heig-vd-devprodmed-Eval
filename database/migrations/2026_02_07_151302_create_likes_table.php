@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('post_id')->constrained('posts')->onDelete('cascade');
+            $table->foreignId('move_id')->constrained('moves')->onDelete('cascade');
             $table->enum('reaction', ['like', 'love', 'haha', 'wow', 'sad', 'angry'])->default('like');
             $table->timestamps();
 
-            $table->unique(['user_id', 'post_id']);
+            $table->unique(['user_id', 'move_id']);
         });
     }
 

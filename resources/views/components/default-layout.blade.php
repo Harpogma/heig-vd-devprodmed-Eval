@@ -26,9 +26,9 @@
                     <a href="{{ url('/') }}" class="block hover:opacity-80 transition">
                         {{ config('app.name') }}
                     </a>
-                    <a href="{{ url('/posts') }}"
+                    <a href="{{ url('/moves') }}"
                         class="block bg-fuchsia-800 dark:bg-purple-900 px-3 py-1 rounded-md hover:bg-fuchsia-500 dark:hover:bg-purple-800">
-                        {{ __('ui.posts.index.title') }}
+                        {{ __('ui.moves.index.title') }}
                     </a>
                 </div>
 

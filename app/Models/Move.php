@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Post extends Model
+class Move extends Model
 {
+    protected $table = 'moves';
+
     /**
-     * Get the user that owns the post.
+     * Get the user that owns the move.
      */
     public function user(): BelongsTo
     {
@@ -17,7 +19,7 @@ class Post extends Model
     }
 
     /**
-     * Get the users who liked the post.
+     * Get the users who liked the move.
      */
     public function likes(): BelongsToMany
     {

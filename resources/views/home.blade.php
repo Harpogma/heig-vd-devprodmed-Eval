@@ -16,17 +16,17 @@
     </p>
 
     <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8">
-        {{ __('ui.home.recent_posts') }}
+        {{ __('ui.home.recent_moves') }}
     </h2>
 
     <div class="mt-8 space-y-6">
-        @foreach ($posts as $post)
-            <x-post-card :post="$post" />
+        @foreach ($moves as $move)
+            <x-move-card :move="$move" />
         @endforeach
     </div>
 
-    <a href="{{ url('/posts') }}"
+    <a href="{{ url('/moves') }}"
         class="mt-6 block w-full px-4 py-2 bg-teal-600 dark:bg-purple-900 text-white rounded-md hover:bg-teal-700 dark:hover:bg-purple-800 text-center">
-        {{ __('ui.home.see_all_posts') }}
+        {{ __('ui.home.see_all_moves') }}
     </a>
 </x-default-layout>

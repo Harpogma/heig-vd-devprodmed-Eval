@@ -39,31 +39,31 @@
                         {{ __('ui.tokens.form.fields.scopes.label') }}
                     </legend>
                     <div class="flex items-center mb-2">
-                        <input type="checkbox" id="scope-posts:create" name="scopes[]" value="posts:create"
-                            {{ in_array('posts:create', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
-                        <label for="scope-posts:create" class="text-sm text-gray-700 dark:text-gray-300">
-                            {{ __('ui.tokens.form.fields.scopes.options.posts_create') }}
+                        <input type="checkbox" id="scope-moves:create" name="scopes[]" value="moves:create"
+                            {{ in_array('moves:create', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
+                        <label for="scope-moves:create" class="text-sm text-gray-700 dark:text-gray-300">
+                            {{ __('ui.tokens.form.fields.scopes.options.moves_create') }}
                         </label>
                     </div>
                     <div class="flex items-center mb-2">
-                        <input type="checkbox" id="scope-posts:read" name="scopes[]" value="posts:read"
-                            {{ in_array('posts:read', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
-                        <label for="scope-posts:read" class="text-sm text-gray-700 dark:text-gray-300">
-                            {{ __('ui.tokens.form.fields.scopes.options.posts_read') }}
+                        <input type="checkbox" id="scope-moves:read" name="scopes[]" value="moves:read"
+                            {{ in_array('moves:read', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
+                        <label for="scope-moves:read" class="text-sm text-gray-700 dark:text-gray-300">
+                            {{ __('ui.tokens.form.fields.scopes.options.moves_read') }}
                         </label>
                     </div>
                     <div class="flex items-center mb-2">
-                        <input type="checkbox" id="scope-posts:update" name="scopes[]" value="posts:update"
-                            {{ in_array('posts:update', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
-                        <label for="scope-posts:update" class="text-sm text-gray-700 dark:text-gray-300">
-                            {{ __('ui.tokens.form.fields.scopes.options.posts_update') }}
+                        <input type="checkbox" id="scope-moves:update" name="scopes[]" value="moves:update"
+                            {{ in_array('moves:update', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
+                        <label for="scope-moves:update" class="text-sm text-gray-700 dark:text-gray-300">
+                            {{ __('ui.tokens.form.fields.scopes.options.moves_update') }}
                         </label>
                     </div>
                     <div class="flex items-center mb-2">
-                        <input type="checkbox" id="scope-posts:delete" name="scopes[]" value="posts:delete"
-                            {{ in_array('posts:delete', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
-                        <label for="scope-posts:delete" class="text-sm text-gray-700 dark:text-gray-300">
-                            {{ __('ui.tokens.form.fields.scopes.options.posts_delete') }}
+                        <input type="checkbox" id="scope-moves:delete" name="scopes[]" value="moves:delete"
+                            {{ in_array('moves:delete', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
+                        <label for="scope-moves:delete" class="text-sm text-gray-700 dark:text-gray-300">
+                            {{ __('ui.tokens.form.fields.scopes.options.moves_delete') }}
                         </label>
                     </div>
                     @error('scopes')
