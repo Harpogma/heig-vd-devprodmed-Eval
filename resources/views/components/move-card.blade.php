@@ -37,9 +37,9 @@
 
     <footer class="pt-4 border-t border-gray-200 dark:border-gray-700">
         <div class="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
-            <a href="{{ url('/moves/' . $move->id) }}" class="font-semibold">
-                {{ trans_choice('ui.moves.likes_count', count($move->likes)) }}
-            </a>
+            <span class="font-semibold text-gray-700 dark:text-gray-300">
+                Score : {{ $move->score() }}
+            </span>
             <a href="{{ url('/moves/' . $move->id) }}"
                 class="px-4 py-2 bg-teal-600 dark:bg-purple-900 text-white rounded-md hover:bg-teal-700 dark:hover:bg-purple-800">
                 {{ __('ui.moves.view_move') }}

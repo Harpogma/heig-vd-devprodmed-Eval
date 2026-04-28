@@ -21,7 +21,7 @@ class CharacterSelectionController extends Controller
 
     public function store(Request $request)
     {
-        $validSlugs = array_map(fn($c) => $c->slug, Character::all());
+        $validSlugs = Character::pluck('slug')->toArray();
 
         $validated = $request->validate([
             'character_slug' => ['required', 'string', 'in:' . implode(',', $validSlugs)],

@@ -4,25 +4,36 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Move extends Model
 {
     protected $table = 'moves';
 
-    /**
-     * Get the user that owns the move.
-     */
+    protected $fillable = ['title', 'strike_id', 'character_id'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get the users who liked the move.
-     */
-    public function likes(): BelongsToMany
+    public function strike(): BelongsTo
     {
-        return $this->belongsToMany(User::class, 'likes')->using(Like::class)->withTimestamps()->withPivot('reaction');
+        return $this->belongsTo(Strike::class);
+    }
+
+    public function character(): BelongsTo
+    {
+        return $this->belongsTo(Character::class);
+    }
+
+    public function votes(): HasMany
+    {
+        return $this->hasMany(Vote::class);
+    }
+
+    public function score(): int
+    {
+        return (int) $this->votes()->sum('weight');
     }
 }

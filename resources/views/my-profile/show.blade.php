@@ -32,19 +32,21 @@
                     {{ $user->email }}
                 </p>
 
-                <p class="text-gray-600 dark:text-gray-400 mt-1">
-                    Votre personnage est : {{ $user->character_slug }}
-                </p>
-
                 @php $character = $user->character_slug ? \App\Models\Character::findBySlug($user->character_slug) : null; @endphp
 
-                <p class="text-gray-600 dark:text-gray-400 mt-1">
-                    Son archétype est : {{ $character ? $character->archetype->value : '—' }}
-                </p>
+                <div class="bg-gray-100 dark:bg-slate-700 rounded-md px-4 py-3 mt-3 inline-block text-left">
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Votre personnage est : {{ $user->character_slug }}
+                    </p>
 
-                <p class="text-gray-600 dark:text-gray-400 mt-1">
-                    Son anti-archétype est : {{ $character ? $character->anti_archetype->value : '—' }}
-                </p>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">
+                        Son archétype est : {{ $character ? $character->archetype->value : '—' }}
+                    </p>
+
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">
+                        Son anti-archétype est : {{ $character ? $character->anti_archetype->value : '—' }}
+                    </p>
+                </div>
 
                 <p class="mt-4 dark:text-gray-300">
                     {{ __('ui.my_profile.show.member_since', ['date' => $user->created_at->isoFormat('LL')]) }}

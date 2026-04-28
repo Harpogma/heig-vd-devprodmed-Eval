@@ -33,14 +33,38 @@
                 @enderror
             </div>
 
-            <div class="mb-6">
-                <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {{ __('ui.moves.form.fields.content.label') }}
+            <div class="mb-4">
+                <label for="strike_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Strike
                 </label>
-                <textarea id="content" name="content" rows="5"
-                    placeholder="{{ __('ui.moves.form.fields.content.placeholder') }}"
-                    class="w-full px-3 py-2 border rounded-md bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:border-transparent @error('content') border-red-500 focus:ring-red-500 @else border-gray-300 dark:border-gray-600 focus:ring-teal-500 dark:focus:ring-purple-500 @enderror">{{ old('content') }}</textarea>
-                @error('content')
+                <select id="strike_id" name="strike_id"
+                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500 dark:focus:ring-purple-500 focus:border-transparent @error('strike_id') border-red-500 @enderror">
+                    <option value="">— Sélectionner un strike —</option>
+                    @foreach ($strikes as $strike)
+                        <option value="{{ $strike->id }}" {{ old('strike_id') == $strike->id ? 'selected' : '' }}>
+                            {{ $strike->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('strike_id')
+                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-6">
+                <label for="character_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Personnage
+                </label>
+                <select id="character_id" name="character_id"
+                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500 dark:focus:ring-purple-500 focus:border-transparent @error('character_id') border-red-500 @enderror">
+                    <option value="">— Sélectionner un personnage —</option>
+                    @foreach ($characters as $character)
+                        <option value="{{ $character->id }}" {{ old('character_id') == $character->id ? 'selected' : '' }}>
+                            {{ $character->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('character_id')
                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                 @enderror
             </div>

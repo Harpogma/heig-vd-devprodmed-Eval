@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Character;
 use App\Models\Move;
+use App\Models\Strike;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -14,7 +16,7 @@ class MoveController extends Controller
      */
     public function index()
     {
-        $moves = Move::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
+        $moves = Move::orderBy('created_at', 'desc')->with('user')->with('votes')->get();
 
         return view('moves.index', ['moves' => $moves]);
     }
@@ -24,7 +26,10 @@ class MoveController extends Controller
      */
     public function create()
     {
-        return view('moves.create');
+        $strikes    = Strike::all();
+        $characters = Character::all();
+
+        return view('moves.create', compact('strikes', 'characters'));
     }
 
     /**
@@ -33,16 +38,13 @@ class MoveController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'nullable|string|max:255',
-            'content' => 'required|string|max:5000',
+            'title'        => 'nullable|string|max:255',
+            'strike_id'    => 'nullable|exists:strikes,id',
+            'character_id' => 'nullable|exists:characters,id',
         ]);
 
-        $user = $request->user();
-        $move = new Move();
-
-        $move->title = $validated['title'];
-        $move->content = $validated['content'];
-        $move->user()->associate($user);
+        $move = new Move($validated);
+        $move->user_id = Auth::id();
 
         $move->save();
 
@@ -54,20 +56,13 @@ class MoveController extends Controller
      */
     public function show(string $id)
     {
-        $move = Move::with('user')->with('likes')->findOrFail($id);
+        $move = Move::with(['user', 'strike', 'character', 'votes'])->findOrFail($id);
 
-        $user = Auth::user();
-        $reaction = null;
+        $userVote = Auth::check()
+            ? $move->votes()->where('user_id', Auth::id())->first()
+            : null;
 
-        if ($user) {
-            $reaction = $move->likes()->where('user_id', $user->id)->first();
-
-            if ($reaction) {
-                $reaction = $reaction->pivot->reaction;
-            }
-        }
-
-        return view('moves.show', ['move' => $move, 'reaction' => $reaction]);
+        return view('moves.show', ['move' => $move, 'userVote' => $userVote]);
     }
 
     /**
@@ -89,7 +84,6 @@ class MoveController extends Controller
     {
         $validated = $request->validate([
             'title' => 'nullable|string|max:255',
-            'content' => 'required|string|max:5000',
         ]);
 
         $move = Move::findOrFail($id);
@@ -97,7 +91,6 @@ class MoveController extends Controller
         Gate::authorize('update', $move);
 
         $move->title = $validated['title'];
-        $move->content = $validated['content'];
 
         $move->save();
 
