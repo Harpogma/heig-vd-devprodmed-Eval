@@ -15,11 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         DB::transaction(function () {
             // Reference data: characters
-            DB::table('characters')->insert([
-                ['name' => 'Aki',     'slug' => 'aki',     'archetype' => 'unique',   'anti_archetype' => 'grappler', 'profile_picture_path' => 'images/aki.png',     'created_at' => now(), 'updated_at' => now()],
-                ['name' => 'Zangief', 'slug' => 'zangief', 'archetype' => 'grappler', 'anti_archetype' => 'zoner',    'profile_picture_path' => 'images/zangief.png', 'created_at' => now(), 'updated_at' => now()],
-                ['name' => 'Sagat',   'slug' => 'sagat',   'archetype' => 'shoto',    'anti_archetype' => 'unique',   'profile_picture_path' => 'images/sagat.png',   'created_at' => now(), 'updated_at' => now()],
-            ]);
+            $this->call(CharacterSeeder::class);
 
             // Reference data: strikes
             DB::table('strikes')->insert([

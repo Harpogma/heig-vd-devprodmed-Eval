@@ -33,10 +33,12 @@ class VoteController extends Controller
         $moveCharacter  = $move->character;
         $voterCharacter = Character::findBySlug($user->character_slug);
 
-        $weight = ($voterCharacter && $moveCharacter
+        $baseWeight = ($voterCharacter && $moveCharacter
             && $voterCharacter->archetype->value === $moveCharacter->anti_archetype->value)
             ? 2
             : 1;
+
+        $weight = $validated['type'] === 'buff' ? +$baseWeight : -$baseWeight;
 
         Vote::create([
             'user_id' => $user->id,

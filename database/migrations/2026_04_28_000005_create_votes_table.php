@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('move_id')->constrained('moves')->onDelete('cascade');
             $table->enum('type', ['buff', 'nerf']);
-            $table->unsignedTinyInteger('weight');
+            $table->tinyInteger('weight');
             $table->timestamps();
 
             $table->unique(['user_id', 'move_id']);
