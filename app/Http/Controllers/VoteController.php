@@ -47,6 +47,6 @@ class VoteController extends Controller
             'weight'  => $weight,
         ]);
 
-        return back();
+        return redirect()->back()->with('success', 'Vote enregistré.');
     }
 }

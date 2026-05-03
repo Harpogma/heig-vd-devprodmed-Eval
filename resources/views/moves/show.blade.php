@@ -92,6 +92,10 @@
                     </form>
                 @endif
 
+                @if (session('success'))
+                    <p class="mb-3 text-sm text-teal-600 dark:text-teal-400">{{ session('success') }}</p>
+                @endif
+
                 @if (session('error'))
                     <p class="mb-3 text-sm text-red-600 dark:text-red-400">{{ session('error') }}</p>
                 @endif

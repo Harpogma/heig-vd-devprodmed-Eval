@@ -14,7 +14,7 @@ class ApiMoveController extends Controller
      */
     public function index()
     {
-        $moves = Move::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
+        $moves = Move::orderBy('created_at', 'desc')->with('user')->with('votes')->get();
 
         return $moves;
     }
@@ -26,14 +26,12 @@ class ApiMoveController extends Controller
     {
         $validated = $request->validate([
             'title' => 'nullable|string|max:255',
-            'content' => 'required|string|max:5000',
         ]);
 
         $user = $request->user();
         $move = new Move();
 
         $move->title = $validated['title'];
-        $move->content = $validated['content'];
         $move->user()->associate($user);
 
         $move->save();
