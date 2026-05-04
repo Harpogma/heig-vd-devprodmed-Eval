@@ -22,10 +22,6 @@ class VoteController extends Controller
             return back()->with('error', 'Vous avez déjà voté pour ce Move.');
         }
 
-        if (!$user->character_slug) {
-            return redirect()->route('character.select');
-        }
-
         $validated = $request->validate([
             'type' => ['required', 'in:buff,nerf'],
         ]);

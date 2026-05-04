@@ -44,7 +44,7 @@ class ApiMoveController extends Controller
      */
     public function show(string $id)
     {
-        $move = Move::with('user')->with('likes')->findOrFail($id);
+        $move = Move::with('user')->with('votes')->findOrFail($id);
 
         return $move;
     }
@@ -56,7 +56,6 @@ class ApiMoveController extends Controller
     {
         $validated = $request->validate([
             'title' => 'nullable|string|max:255',
-            'content' => 'required|string|max:5000',
         ]);
 
         $move = Move::findOrFail($id);
@@ -64,7 +63,6 @@ class ApiMoveController extends Controller
         Gate::authorize('update', $move);
 
         $move->title = $validated['title'];
-        $move->content = $validated['content'];
 
         $move->save();
 

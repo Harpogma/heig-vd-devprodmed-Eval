@@ -22,7 +22,7 @@ Route::get('/about', function () {
 
 Route::get('/@{username}', [ProfileController::class, 'show'])->where('username', '[A-Za-z0-9-_]+');
 
-Route::resource('moves', MoveController::class)->except(['index', 'show'])->middleware('auth');
+Route::resource('moves', MoveController::class)->except(['index', 'show'])->middleware(['auth', 'character.selected']);
 Route::resource('moves', MoveController::class)->only(['index', 'show']);
 
 Route::singleton('my-profile', MyProfileController::class)->destroyable()->middleware(['auth', 'character.selected']);
@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/moves/{move}/vote', [VoteController::class, 'store'])
-    ->middleware('auth')
+    ->middleware(['auth', 'character.selected'])
     ->name('moves.vote');
 
 Route::controller(AuthController::class)->group(function () {
